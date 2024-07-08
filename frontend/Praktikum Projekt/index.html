@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="DE">
+    
+    <head>
+        <title>MineSweeper</title>
+        <link rel="stylesheet" type="text/css" href="./css/styles.css">
+        <link rel="shortcut icon" href="">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Anton+SC&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+        <script type="text/javascript" src="./js/javascript.js" defer></script>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    </head>
+
+    <body>
+        <div class="mainBody">
+            <header>
+                <div class="upperHeader">
+                    <p>Willkommen zu MineSweeper!</p>
+                </div>
+                <div class="lowerHeader">
+                    <div class="rules">
+                        <p>Regeln</p>
+                    </div>
+                    <div class="emoji">
+                        <img src="./img/emoji.png">
+                    </div>
+                    <div class="fieldSize">
+                        <p>Größe des Spielfelds</p>
+                    </div>
+                </div>
+            </header>
+
+            <main>
+                <div class="gameField" id="gameField" oncontextmenu="return false;">
+                    
+                </div>
+                
+                <div class="mineSweeperImg">
+                    <img src="./img/mineSweeper.png">
+                </div>
+            </main>
+
+            <footer>
+                <button id="btn">Daten abrufen</button>
+                <div id="output">
+                    <p>String: <span id="string"></span></p>
+                </div>
+            </footer>
+        </div>
+    </body>
+</html>
