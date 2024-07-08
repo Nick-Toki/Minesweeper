@@ -21,10 +21,10 @@ def create_field(Mine, Flagge, f_range, prob, pow):
         fly = []
         for j in range(f_range):
             if random.randint(1,100) < prob :
-                d = {'Mine': True, 'Flagge': False, 'Offen': False, 'value': -1}
+                d = {'Mine': True, 'Flagge': False, 'Offen': False, 'Value': -1}
                 fly.append(d)
             else:
-                e = {'Mine': False, 'Flagge': False, 'Offen': False, 'value': 0 }
+                e = {'Mine': False, 'Flagge': False, 'Offen': False, 'Value': 0 }
 
                 fly.append(e)
             
@@ -33,7 +33,7 @@ def create_field(Mine, Flagge, f_range, prob, pow):
     for i in range(len(fie)):
         for j in range(len(fie[i])):
             if not fie[i][j]["Mine"]:
-                fie[i][j]["value"] = check_number(fie, i, j)
+                fie[i][j]["Value"] = check_number(fie, i, j)
 
                
                   
@@ -68,7 +68,7 @@ def ausgabe(fie):
                 if element["Mine"]:
                     zeile = zeile + ("M ")
                 else:
-                    zeile = zeile + str(element["value"]) + " "
+                    zeile = zeile + str(element["Value"]) + " "
         print(zeile)               
 
 def aufdecken(fie, x, y):
