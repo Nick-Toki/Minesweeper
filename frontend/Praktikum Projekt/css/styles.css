@@ -1,0 +1,121 @@
+body {
+    background-color: rgb(244, 244, 244);
+}
+
+.upperHeader {
+    width: 648px;
+    height: 112px;
+    border: solid;
+    background-color: rgb(213, 213, 213);
+    border-color: transparent;
+    margin: auto;
+    margin-top: 2%;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.35);
+}
+
+.upperHeader p {
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 500;
+    font-size: 2.5em;
+    text-align: center;
+}
+
+.lowerHeader {
+    width: 648px;
+    height: 39px;
+    border: solid;
+    background-color: rgb(213, 213, 213);
+    border-color: transparent;
+    border-top-color: rgb(187, 187, 187);
+    border-top-width: 1.25px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.35);
+}
+
+.rules, .emoji, .fieldSize {
+    width: 216px;
+    height: 39px;
+}
+
+.rules p, .emoji p, .fieldSize p {
+    font-family: "Ubuntu", sans-serif;
+    font-weight: 500;
+    font-size: 1.25em;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.rules {
+    border: solid;
+    border-width: 1.25px;
+    border-color: transparent;
+    border-right-color: rgb(187, 187, 187);
+}
+
+.fieldSize {
+    border: solid;
+    border-width: 1.25px;
+    border-color: transparent;
+    border-left-color: rgb(187, 187, 187);
+}
+
+.emoji img {
+    max-width: 22.5%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
+
+
+/*---------------------------------------------------------------------------------*/
+
+
+
+
+
+.gameField {
+    width: 750px;
+    height: 750px;
+    margin: auto;
+    margin-top: 65px;
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto auto auto auto;
+    grid-auto-rows: min-content;
+}
+
+.tile {
+    width: 75px;
+    height: 75px;
+}
+
+.mineSweeperImg {
+    width: 500px;
+    height: 500px;
+    position: absolute;
+    left: 5%;
+    top: 30%;
+}
+
+.mineSweeperImg img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.mainBody {
+    height: 1080px;
+    width: 1920px;
+    margin: auto;
+    border :solid;
+    position: relative;
+}
