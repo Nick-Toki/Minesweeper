@@ -9,7 +9,16 @@ field = Minesweeper.create_field(10, 20)
 
 @app.route('/start', methods=['GET'])
 def index():
-    return Response(json.dumps(field), mimetype='application/json')
+    global field
+    field = Minesweeper.create_field(10, 20)
+    status = True
+    
+    res = {
+    "field" : field,
+    "status": status
+    }
+    
+    return Response(json.dumps(res), mimetype='application/json')
 
 
 @app.route('/open', methods=['GET'])
