@@ -113,16 +113,16 @@ function generateField(position) {
                 img.src = `./img/sweepertile${position[i][j]["Value"]}.png`;
             } 
 
-            else if (position[i][j]["Offen"] === true && position[i][j]["Value"] === 0) {
+            else if (position[i][j]["Offen"] === false && position[i][j]["Value"] === 0) {
                 img.src = "./img/tileempty.png";
+            }
+
+            else if (position[i][j]["Offen"] === false && position[i][j]["Value"] >= 0) {
+                img.src = `./img/sweepertile${position[i][j]["Value"]}.png`;
             }
             
             else if (position[i][j]["Offen"] === false) {
                 img.src = "./img/tile.png";
-            }
-
-            else {
-                
             }
 
             createDiv.appendChild(img);
@@ -134,4 +134,3 @@ function generateField(position) {
 }
 
 generateField(exPosition)
-
