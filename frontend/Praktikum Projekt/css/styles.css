@@ -123,10 +123,3 @@ body {
 #btn {
     margin-top: 10%;
 }
-
-#string {
-    border: solid;
-    width: 500px;
-    word-wrap: break-word;
-}
-

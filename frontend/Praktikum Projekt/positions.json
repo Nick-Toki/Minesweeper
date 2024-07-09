@@ -2,7 +2,7 @@
     "positions": [
         [
             {"Flagge": true, "Mine": false, "Offen": false, "Value": 7},
-            {"Flagge": false, "Mine": true, "Offen": false, "Value": 5},
+            {"Flagge": false, "Mine": true, "Offen": false, "Value": -1},
             {"Flagge": false, "Mine": false, "Offen": false, "Value": 1},
             {"Flagge": false, "Mine": false, "Offen": false, "Value": 8},
             {"Flagge": false, "Mine": false, "Offen": false, "Value": 3},
@@ -13,7 +13,7 @@
             {"Flagge": false, "Mine": false, "Offen": false, "Value": 4}
         ],
         [
-            {"Flagge": false, "Mine": false, "Offen": false, "Value": 2},
+            {"Flagge": false, "Mine": false, "Offen": true, "Value": 0},
             {"Flagge": false, "Mine": false, "Offen": false, "Value": 4},
             {"Flagge": false, "Mine": false, "Offen": false, "Value": 3},
             {"Flagge": false, "Mine": false, "Offen": false, "Value": 7},
@@ -62,7 +62,7 @@
         ],
         [
             {"Flagge": true, "Mine": false, "Offen": true, "Value": 7},
-            {"Flagge": false, "Mine": true, "Offen": false, "Value": 8},
+            {"Flagge": false, "Mine": true, "Offen": false, "Value": -1},
             {"Flagge": false, "Mine": false, "Offen": false, "Value": 2},
             {"Flagge": false, "Mine": false, "Offen": false, "Value": 6},
             {"Flagge": false, "Mine": false, "Offen": false, "Value": 1},
