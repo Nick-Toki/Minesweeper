@@ -14,7 +14,7 @@ def check_number(fie, first, second):
     return n
 
 
-def create_field(Mine, Flagge, f_range, prob, pow):
+def create_field(f_range, prob):
     fie = []
     for i in range(f_range):        
         fly = []
@@ -132,10 +132,11 @@ def play(fie):
 if __name__ == "__main__":
     a = int(input("Wie groß soll das Feld sein. Bsp: 10 = (10*10 = 100): "))
     pr = int(input("Wieviele Minen willst du in %? (Wahrscheinlichkeit auf 100): ")) 
-    field = create_field(2, 1, a, pr, ["1", "2", "3", "0"]) 
+    fie = []
+    x = int(input("X: "))
+    y = int(input("Y: "))
+    field = create_field(a, pr)
+    updatedField = aufdecken(fie, x, y) 
     pprint.pprint(field)
     ausgabe(field)
     play(field)
-
-
-
