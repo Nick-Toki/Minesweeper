@@ -1,8 +1,7 @@
 import random
 import pprint
 # Hier beginnt Minesweeper Beginn mit dem Feld an
-a = int(input("Wie groß soll das Feld sein. Bsp: 10 = (10*10 = 100): "))
-pr = int(input("Wieviele Minen willst du in %? (Wahrscheinlichkeit auf 100): "))                   
+                  
              
 def check_number(fie, first, second):
     n = 0
@@ -25,7 +24,6 @@ def create_field(Mine, Flagge, f_range, prob, pow):
                 fly.append(d)
             else:
                 e = {'Mine': False, 'Flagge': False, 'Offen': False, 'Value': 0 }
-
                 fly.append(e)
             
         fie.append(fly)
@@ -42,14 +40,14 @@ def create_field(Mine, Flagge, f_range, prob, pow):
     # durch alle felder gehen {
       # if not mine
             # n = check_number
-            # value = n
+            # Value = n
     # }
 
 def Ziel(fie):
     for i in range(len(fie)):
         for j in range(len(fie[i])):
             if fie[i][j]["Mine"] == True:
-                if not fie [i][j]["Flagge"] == True:
+                if not fie [i][j]["Flagge"] == True:                        
                     return False
                     
     return True
@@ -131,12 +129,13 @@ def play(fie):
 
                 
 
-
-                    
-field = create_field(2, 1, a, pr, ["1", "2", "3", "0"])
-pprint.pprint(field)
-ausgabe(field)
-play(field)
+if __name__ == "__main__":
+    a = int(input("Wie groß soll das Feld sein. Bsp: 10 = (10*10 = 100): "))
+    pr = int(input("Wieviele Minen willst du in %? (Wahrscheinlichkeit auf 100): ")) 
+    field = create_field(2, 1, a, pr, ["1", "2", "3", "0"]) 
+    pprint.pprint(field)
+    ausgabe(field)
+    play(field)
 
 
 
