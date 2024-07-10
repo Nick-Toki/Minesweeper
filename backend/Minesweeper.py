@@ -44,19 +44,19 @@ def create_field(f_range, prob):
     # }
 
 def Ziel(fie, x, y):
+    
+    if fie[x-1][y-1]["Mine"] == True and fie[x-1][y-1]["Offen"] :
+        return "LOST"
+    
+    
     for i in range(len(fie)):
         for j in range(len(fie[i])):
             if fie[x-1][y-1]["Mine"] == True:
                 if not fie [x-1][y-1]["Flagge"] == True:                    
-                    return False
+                    return "Go on"
+
+    return "Won"
     
-    
-    for i in range(len(fie)):
-        for j in range(len(fie[i])):
-            if fie[i][j]["Offen"] == True:
-                if fie[i][j]["Mine"] == fie[i][j]["Flagge"]:
-                    
-                    return True
                 
 
 def ausgabe(fie):    
