@@ -43,14 +43,20 @@ def create_field(f_range, prob):
             # Value = n
     # }
 
-def Ziel(fie):
+def Ziel(fie, x, y):
     for i in range(len(fie)):
         for j in range(len(fie[i])):
-            if fie[i][j]["Mine"] == True:
-                if not fie [i][j]["Flagge"] == True:                    
+            if fie[x-1][y-1]["Mine"] == True:
+                if not fie [x-1][y-1]["Flagge"] == True:                    
                     return False
-
-    return True
+    
+    
+    for i in range(len(fie)):
+        for j in range(len(fie[i])):
+            if fie[i][j]["Offen"] == True:
+                if fie[i][j]["Mine"] == fie[i][j]["Flagge"]:
+                    
+                    return True
                 
 
 def ausgabe(fie):    
@@ -96,10 +102,12 @@ def play(fie):
             
             Flag(field, q, k) 
             ausgabe(fie)
-            if Ziel(field) == True:
+            if Ziel(field, q, k) == True :
                 print("!WIN!(*-*)!WIN!")
                 quit()
-
+            if Ziel(field, q, k) == False:
+                print("GAME OVER")
+                quit()
         if g == 2:
                 x = int(input("X: "))
                 y = int(input("Y: "))
@@ -112,8 +120,8 @@ def play(fie):
                             ausgabe(fie)
                         else:
                             ausgabe(fie)
-                        if Ziel(field) == False:
-                            # print("GAME OVER")
+                        if Ziel(field, x, y) == False:
+                            print("GAME OVER")
                             quit()
                     else:
                         print("Ok, dann nicht")
@@ -123,8 +131,8 @@ def play(fie):
                         ausgabe(fie)
                     elif fie[x-1][y-1]["Offen"] == True:  
                         ausgabe(fie)
-                        if Ziel(field) == False:
-                            # print("GAME OVER")
+                    if Ziel(field, x, y) == False:
+                            print("GAME OVER")
                             quit()
 
                 

@@ -24,7 +24,20 @@ def index():
 @app.route('/open', methods=['GET'])
 def open():
     global field
-    field = Minesweeper.aufdecken(field, 1, 2)
+    field = Minesweeper.aufdecken(field, 1, 1)
+    print(field)
+    return Response(json.dumps(field), mimetype='application/json')
+
+
+app.run(host='0.0.0.0', port=81)
+
+
+
+@app.route('/flag', methods=['GET'])
+def flag():
+    
+    global field
+    field = Minesweeper.Flag(field, 1, 2)
     print(field)
     return Response(json.dumps(field), mimetype='application/json')
 
