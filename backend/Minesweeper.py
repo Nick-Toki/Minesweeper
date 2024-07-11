@@ -49,13 +49,25 @@ def Ziel(fie, x, y):
         return "LOST"
     
     
+    anzahl_minen = 0
+    anzahl_geschlossene_felder = 0
+    
+    
     for i in range(len(fie)):
         for j in range(len(fie[i])):
-            if fie[x-1][y-1]["Mine"] == True:
-                if not fie [x-1][y-1]["Flagge"] == True:                    
-                    return "Go on"
-
-    return "Won"
+            if fie[i][j]["Mine"] == True:
+                anzahl_minen = anzahl_minen + 1
+            if fie[i][j]["Offen"] == False:
+                anzahl_geschlossene_felder = anzahl_geschlossene_felder + 1
+                
+                
+    # print(anzahl_geschlossene_felder, anzahl_minen)
+    if anzahl_geschlossene_felder == anzahl_minen:
+        return "Won"
+            
+    else:
+        return "Go on"
+  
     
                 
 
@@ -77,6 +89,7 @@ def ausgabe(fie):
 
 def aufdecken(fie, x, y):
     fie[x-1][y-1]["Offen"] = True
+    fie[x-1][y-1]["Flagge"] = False
     # for i in range(x-2, x+1):
     #     for j in range(y-2, y+1):
     #         if not (i < 0 or i>= len(fie)):
@@ -86,15 +99,19 @@ def aufdecken(fie, x, y):
     # print(fie)
   
     return fie
+
+
 def Flag(fie, q, k):
     fie[q-1][k-1]["Flagge"] = not fie[q-1][k-1]["Flagge"]
     return fie
+
+
 # Hier gehts ans "Hauptspiel" ab hier werden die Felder ausgewählt
 def play(fie):
     while True:
         
         g = int(input("Flagge: 1, Feld auslösen: 2 was möchtest du tun: "))
-     
+        # ausgabe(field)
 
         if g == 1:
             q = int(input("X: "))
@@ -102,12 +119,14 @@ def play(fie):
             
             Flag(field, q, k) 
             ausgabe(fie)
-            if Ziel(field, q, k) == True :
+            if Ziel(field, q, k) == "WON" :
                 print("!WIN!(*-*)!WIN!")
                 quit()
-            if Ziel(field, q, k) == False:
+            if Ziel(field, q, k) == "LOST":
                 print("GAME OVER")
                 quit()
+            if Ziel(field, q, k) == "Go on":
+                pass
         if g == 2:
                 x = int(input("X: "))
                 y = int(input("Y: "))
@@ -118,11 +137,16 @@ def play(fie):
                         if fie[x-1][y-1]["Offen"] == False:
                             fie = aufdecken(fie, x, y)
                             ausgabe(fie)
-                        else:
+                        elif fie[x-1][y-1]["Offen"] == True:
                             ausgabe(fie)
-                        if Ziel(field, x, y) == False:
+                        if Ziel(field, x, y) == "LOST":
                             print("GAME OVER")
                             quit()
+                        if Ziel(field, x, y) == "WON" :
+                            print("!WIN!(*-*)!WIN!")
+                            quit()
+                        if Ziel(field, x, y) == "Go on":
+                            pass
                     else:
                         print("Ok, dann nicht")
                 if fie[x-1][y-1]["Flagge"] == False:
@@ -131,9 +155,14 @@ def play(fie):
                         ausgabe(fie)
                     elif fie[x-1][y-1]["Offen"] == True:  
                         ausgabe(fie)
-                    if Ziel(field, x, y) == False:
+                    if Ziel(field, x, y) == "LOST":
                             print("GAME OVER")
                             quit()
+                    if Ziel(field, x, y) == "Won":
+                        print("!WIN!(*-*)!WIN!")
+                        quit()
+                    if Ziel(field, x, y) == "Go on":
+                        pass
 
                 
 
@@ -146,6 +175,6 @@ if __name__ == "__main__":
     # g = int(input("Flagge: 1, Feld auslösen: 2 was möchtest du tun: "))
     field = create_field(a, pr)
     # updatedField = aufdecken(fie, x, y) 
-    pprint.pprint(field)
+    # pprint.pprint(field)
     ausgabe(field)
     play(field)

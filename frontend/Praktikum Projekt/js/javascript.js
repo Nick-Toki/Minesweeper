@@ -86,26 +86,13 @@ function tileClicked () {
                 }
             });
 
-<<<<<<< HEAD
             console.log(words[0]);
             console.log(words[1]);
 
-=======
-            if (currentState === "default" && this.src.includes("tile.png")) {
-                this.src = "./img/flagtile.png";
-                this.dataset.currentState = "flag";
-            }
-
-            else if (currentState === "flag" && this.src.includes("flagtile.png")) {
-                this.src = "./img/tile.png";
-                this.dataset.currentState = "default";
-            }
->>>>>>> 5b55cb1918fe9f0ceef99b250605fecd9f5679cb
         });
     });
 }
 
-<<<<<<< HEAD
 function rightClickFlag () {
     var rcfElements = document.querySelectorAll(".tile");
 
@@ -138,35 +125,6 @@ function rightClickFlag () {
             console.log(words[1]);
         });
     });
-=======
-let exPosition = [
-    [{},{},{},{},{},{},{},{},{},{}],
-    [{},{},{},{},{},{},{},{},{},{}],
-    [{},{},{},{},{},{},{},{},{},{}],
-    [{},{},{},{},{},{},{},{},{},{}],
-    [{},{},{},{},{},{},{},{},{},{}],
-    [{},{},{},{},{},{},{},{},{},{}],
-    [{},{},{},{},{},{},{},{},{},{}],
-    [{},{},{},{},{},{},{},{},{},{}],
-    [{},{},{},{},{},{},{},{},{},{}],
-    [{},{},{},{},{},{},{},{},{},{}],
-];
-
-function randBool(threshold) {
-    return Math.random() >= threshold;
-}
-
-function randValue(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-for (let i = 0; i < exPosition.length; i++) {
-    for (let j = 0; j < exPosition[i].length; j++) {
-        exPosition[i][j]["Mine"] = randBool(0.95);
-        exPosition[i][j]["Offen"] = randBool(0.1);
-        exPosition[i][j]["Value"] = randValue(1, 8);
-    }
->>>>>>> 5b55cb1918fe9f0ceef99b250605fecd9f5679cb
 }
 
 function generateField(position) {
