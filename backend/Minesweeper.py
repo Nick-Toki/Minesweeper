@@ -46,15 +46,15 @@ def create_field(f_range, prob):
 def Ziel(fie, x, y):
     
     if fie[x-1][y-1]["Mine"] == True and fie[x-1][y-1]["Offen"] :
+        print("Verloren")
         return "LOST"
-    
-    
+          
     for i in range(len(fie)):
         for j in range(len(fie[i])):
             if fie[x-1][y-1]["Mine"] == True:
-                if not fie [x-1][y-1]["Flagge"] == True:                    
+                if not fie [x-1][y-1]["Flagge"] == True:                   
                     return "Go on"
-
+    
     return "Won"
     
                 
@@ -89,12 +89,13 @@ def aufdecken(fie, x, y):
 def Flag(fie, q, k):
     fie[q-1][k-1]["Flagge"] = not fie[q-1][k-1]["Flagge"]
     return fie
+
+
 # Hier gehts ans "Hauptspiel" ab hier werden die Felder ausgewählt
 def play(fie):
     while True:
         
         g = int(input("Flagge: 1, Feld auslösen: 2 was möchtest du tun: "))
-     
 
         if g == 1:
             q = int(input("X: "))
@@ -108,6 +109,7 @@ def play(fie):
             if Ziel(field, q, k) == False:
                 print("GAME OVER")
                 quit()
+        
         if g == 2:
                 x = int(input("X: "))
                 y = int(input("Y: "))
@@ -137,15 +139,11 @@ def play(fie):
 
                 
 
+# Flask API Verknüpfung
 if __name__ == "__main__":
     a = int(input("Wie groß soll das Feld sein. Bsp: 10 = (10*10 = 100): "))
     pr = int(input("Wieviele Minen willst du in %? (Wahrscheinlichkeit auf 100): ")) 
-    # fie = []
-    # x = int(input("X: "))
-    # y = int(input("Y: "))
-    # g = int(input("Flagge: 1, Feld auslösen: 2 was möchtest du tun: "))
     field = create_field(a, pr)
-    # updatedField = aufdecken(fie, x, y) 
     pprint.pprint(field)
     ausgabe(field)
     play(field)
