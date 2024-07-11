@@ -28,7 +28,7 @@ function getField(){
         dataType: 'json',
         success: function(data) {
             generateField(data);
-            console.log(data)
+            console.log(data);
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.error('Fehler beim Abrufen der Daten: ' + textStatus, errorThrown);
@@ -38,14 +38,17 @@ function getField(){
     });
 }
 
-function updateField(){
+function placeFlag(){
+    let qcord = 1
+    let kcord = 1
+
     $.ajax({
-        url: 'http://localhost:81/open',
+        url: 'http://localhost:81/flag',
         method: 'GET',
-        dataType: 'json',
+        data:{ q: qcord, k: kcord},
         success: function(data) {
             generateField(data);
-            console.log(data)
+            console.log(data);
         },
         error: function(jqXHR, textStatus, errorThrown) {
             console.error('Fehler beim Abrufen der Daten: ' + textStatus, errorThrown);
@@ -55,103 +58,119 @@ function updateField(){
     });
 }
 
-function rightClickFlag () {
-    var rcfElements = document.querySelectorAll(".rcFlag");
+function tileClicked () {
+    var tcElements = document.querySelectorAll(".tile");
 
-    rcfElements.forEach(function(rcf) {
+    tcElements.forEach(function(tc) {
 
-        rcf.dataset.currentState = "default";
+        tc.addEventListener("click", function() {
+            const string = this.attributes["name"].value
+            const words = string.split('|');
 
-        rcf.addEventListener("contextmenu", function() {
-            
-            var currentState = this.dataset.currentState;
+            let xcord = words[0]
+            let ycord = words[1]
+        
+            $.ajax({
+                url: 'http://localhost:81/open',
+                method: 'GET',
+                data:{ x: xcord, y: ycord},
+                success: function(data) {
+                    generateField(data);
+                    console.log(data);
+                    
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.error('Fehler beim Abrufen der Daten: ' + textStatus, errorThrown);
+                    console.error('Status Code:', jqXHR.status);
+                    console.error('Antworttext:', jqXHR.responseText);
+                }
+            });
 
-            if (currentState === "default" && this.src.includes("tile.png")) {
-                this.src = "./img/flagtile.png";
-                this.dataset.currentState = "flag";
-                this.position[i][j]["Flagge"] === true;
-            }
+            console.log(words[0]);
+            console.log(words[1]);
 
-            else if (currentState === "flag" && this.src.includes("flagtile.png")) {
-                this.src = "./img/tile.png";
-                this.dataset.currentState = "default";
-                this.position[i][j]["Flagge"] === false;
-            }
         });
     });
 }
 
-// let exPosition = [
-//     [{},{},{},{},{},{},{},{},{},{}],
-//     [{},{},{},{},{},{},{},{},{},{}],
-//     [{},{},{},{},{},{},{},{},{},{}],
-//     [{},{},{},{},{},{},{},{},{},{}],
-//     [{},{},{},{},{},{},{},{},{},{}],
-//     [{},{},{},{},{},{},{},{},{},{}],
-//     [{},{},{},{},{},{},{},{},{},{}],
-//     [{},{},{},{},{},{},{},{},{},{}],
-//     [{},{},{},{},{},{},{},{},{},{}],
-//     [{},{},{},{},{},{},{},{},{},{}],
-// ];
+function rightClickFlag () {
+    var rcfElements = document.querySelectorAll(".tile");
 
-// function randBool(threshold) {
-//     return Math.random() >= threshold;
-// }
+    rcfElements.forEach(function(rcf) {
 
-// function randValue(min, max) {
-//     return Math.floor(Math.random() * (max - min + 1)) + min;
-// }
+        rcf.addEventListener("contextmenu", function() {
+            const string = this.attributes["name"].value
+            const words = string.split('|');
 
-// for (let i = 0; i < exPosition.length; i++) {
-//     for (let j = 0; j < exPosition[i].length; j++) {
-//         exPosition[i][j]["Mine"] = randBool(0.95);
-//         exPosition[i][j]["Offen"] = randBool(0.1);
-//         exPosition[i][j]["Value"] = randValue(1, 8);
-//     }
-// }
+            let qcord = words[0]
+            let kcord = words[1]
+        
+            $.ajax({
+                url: 'http://localhost:81/flag',
+                method: 'GET',
+                data:{ q: qcord, k: kcord},
+                success: function(data) {
+                    generateField(data);
+                    console.log(data);
+                    
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.error('Fehler beim Abrufen der Daten: ' + textStatus, errorThrown);
+                    console.error('Status Code:', jqXHR.status);
+                    console.error('Antworttext:', jqXHR.responseText);
+                }
+            });
+
+            console.log(words[0]);
+            console.log(words[1]);
+        });
+    });
+}
 
 function generateField(position) {
-    let field = document.getElementById("gameField");
+    let field = document.getElementById("gameField"); 
     field.innerHTML = '';
 
     for (let i = 0; i < position.length; i++) {
         for (let j = 0; j < position[i].length; j++) {
             let createDiv = document.createElement("div");
             createDiv.classList.add("tile");
+            createDiv.setAttribute("name", i + "|" + j)
 
             var img = document.createElement("img");
-            img.classList.add("rcFlag");
+            var value = position[i][j]["Value"]
+            var offen = position[i][j]["Offen"]
+            var flagge = position[i][j]["Flagge"]
 
-            if (position[i][j]["Offen"] === false) {
+            if (offen === false && flagge === false) {
                 img.src = "./img/tile.png";
-            } 
-            
-            else if (position[i][j]["Offen"] === true && position[i][j]["Value"] === 0) {
-                img.src = "./img/tileempty.png";
             }
 
-            else if (position[i][j]["Offen"] === true && position[i][j]["Value"] !== 0) {
-                img.src = `./img/sweepertile${position[i][j]["Value"]}.png`;
-            } 
-
-            else if (position[i][j]["Offen"] === false && position[i][j]["Value"] >= 0) {
-                img.src = `./img/sweepertile${position[i][j]["Value"]}.png`;
+            else if (offen === false && flagge === true) {
+                img.src = "./img/flagtile.png";
             }
-            
-            else if (position[i][j]["Mine"] === true && (position[i][j]["Value"] === -1)) {
+
+            else if (offen === true && value === -1) {
                 img.src = "./img/tilebomb.png";
             }
+            
+            else if (offen === true && value === 0) {
+                img.src = "./img/sweepertile0.png";
+            }
 
-            else {
-                console.log(122353)
+            else if (offen === true && value > 0) {
+                img.src = `./img/sweepertile${value}.png`;
             }
 
             createDiv.appendChild(img);
             field.appendChild(createDiv);
         }
     }
-
+    tileClicked();
     rightClickFlag();
 }
+
+    
+
 
 // generateField(exPosition)
