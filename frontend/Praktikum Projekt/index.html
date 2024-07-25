@@ -13,42 +13,63 @@
         <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     </head>
 
-    <body>
+    <body onload="checkStatus(), getFieldEasy()"> <!-- Hier werden direkt nach dem Aufruf der Webseite, die beiden Funktionen zur Feldgenerierung und zur Status Überprüfung aufgerufen -->
         <div class="mainBody">
-            <header>
-                <div class="upperHeader">
-                    <p>Willkommen zu MineSweeper!</p>
-                </div>
-                <div class="lowerHeader">
-                    <div class="rules">
-                        <p>Regeln</p>
+                <header>
+                    <div class="upperHeader">
+                        <p>Willkommen zu MineSweeper!</p>
                     </div>
-                    <div class="emoji">
-                        <img src="./img/emoji.png">
-                    </div>
-                    <div class="fieldSize">
-                        <p>Größe des Spielfelds</p>
-                    </div>
-                </div>
-            </header>
 
-            <main>
-                <div class="gameField" id="gameField" oncontextmenu="return false;">
+                    <div class="lowerHeader">
                     
-                </div>
-                
-                <div class="mineSweeperImg">
-                    <img src="./img/mineSweeper.png">
-                </div>
-            </main>
+                        <div class="rules">
+                            <button onclick="rulesOverlay()" class="rulebtn">Regeln</button>
+                            <div id="gameRules" class="rules-overlay">
+                                <div id="gameRuleContent" class="rules-content">
+                                    <p>Minesweeper ist ein Logikspiel in dem es darum geht, alle Kacheln eines Feldes aufzudecken ohne eine einzige Mine auszulösen.</p>
+                                    <p>Unter den Feldern, die aufgedeckt werden können, befinden sich neben den Bomben auch Zahlen:</p>
+                                    <p>Die Zahlen sind die wichtigsten Wegweiser, um eine Bombe ausfindig zu machen. Sie geben an, wie viele Bomben sich unter den angrenzenden Feldern einer Zahl befinden.</p>
+                                    <p>Jedes Feld in Minesweeper ist von acht Feldern umgeben, sodass sich maximal acht Bomben um eine Zahl herum verstecken können. Deckst Du beispielsweise eine Drei auf, befinden sich unter drei der acht Feldern eine Bombe. Mithilfe weiterer umliegender Zahlenfelder findest Du heraus, wo genau sie sich verstecken.</p>
+                                    <h1>Viel Glück!</h1>
+                                </div>
+                                <div class="click-anywhere">
+                                    <p>Klicke irgendwo um das Menü zu schließen</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="emoji">
+                            <img src="./img/emoji.png">
+                        </div>
+                        
+                        <div class="fieldSize">
+                            <button onclick="dropdownMenu()" class="dropbtn">Größe des Spielfelds</button>
+                            <div id="gameDifficulties" class="dropdown-content">
+                                <button onclick="getFieldEasy()">Anfänger (9x9)</button>
+                                <button onclick="getFieldMedium()">Fortgeschritten (16x16)</button>
+                                <button onclick="getFieldHard()">Experte (30x16)</button>
+                            </div>
+                        </div>
+                    
+                    </div>
+                </header>
 
-            <footer>
-                <button onclick="getField()">Feld generieren</button>
+                <main>
+                    <div class="gameFieldEasy" id="gameField" oncontextmenu="return false;">
+                        
+                    </div>
+                    
+                    <div class="mineSweeperImg">
+                        <img src="./img/mineSweeper.png">
+                    </div>
+                </main>
 
-                
+                <footer>
+                    
+                </footer>
+        </div>
+        <div id="opague" class="opague-field">
 
-                <button onclick="placeFlag()">Flagge platzieren</button>
-            </footer>
         </div>
     </body>
 </html>

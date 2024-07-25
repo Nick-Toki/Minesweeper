@@ -41,6 +41,9 @@ def check_number(gamefield, first, second):
 
 # Funktion zur Erstellung des Spielfelds
 def create_field(field_range_x, field_range_y, probability):
+    """
+    Test
+    """
     gamefield = []  # Initialisiert das Spielfeld als leere Liste
     for field_x in range(field_range_x):        
         reihe = []  # Initialisiert eine neue Zeile
@@ -62,9 +65,11 @@ def create_field(field_range_x, field_range_y, probability):
 
 def create_safe_field(open_x, open_y, field_range_x, field_range_y, probability):
     safe_field = create_field(field_range_x, field_range_y, probability)
+    attempt = 0
     while safe_field[open_x-1][open_y-1]["Mine"]:
         safe_field = create_field(field_range_x, field_range_y, probability)
-        print(1)
+        attempt = attempt + 1
+    print("Attempts:", attempt)
     return safe_field
 
 # Funktion zur Überprüfung des Spielzustands
@@ -90,7 +95,7 @@ def get_game_status(gamefield, open_x, open_y):
 def open_all_mines(gamefield):
     for reihe in gamefield:
         for element in reihe:
-            if element["Mine"]:
+            if element["Mine"] and element["Flagge"] == False:
                 element["Offen"] = True
     return gamefield
         
@@ -142,7 +147,8 @@ def aufdecken(gamefield, open_x, open_y):
                 if not (field_x < 0 or field_x >= len(gamefield)):  # Überprüft, ob field_x innerhalb der Feldgrenzen liegt
                     if not (field_y < 0 or field_y >= len(gamefield[field_x])):
                         if not gamefield[field_x][field_y]["Offen"]:
-                            gamefield = aufdecken(gamefield, field_x+1, field_y+1)
+                            if gamefield[field_x][field_y]["Flagge"] == False:
+                                gamefield = aufdecken(gamefield, field_x+1, field_y+1)
 
     return gamefield  # Gibt das aktualisierte Spielfeld zurück
 
