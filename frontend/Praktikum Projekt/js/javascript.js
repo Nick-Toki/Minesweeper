@@ -216,8 +216,6 @@ function rightClickFlag () { // Diese Funktion erlaubt das Platzieren von Flagge
                         console.error('Antworttext:', jqXHR.responseText);
                     }
                 });
-                console.log(words[0]);
-                console.log(words[1]);
             }
         });
     });
