@@ -175,8 +175,6 @@ function leftClickOpen () { // Diese Funktion dient dem Aufdecken von Kacheln.
                         console.error('Antworttext:', jqXHR.responseText);
                     }
                 });
-                console.log(words[0]);
-                console.log(words[1]);
             }
         });
     });
